@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ToDoLIst2</string>
+    <string name="action_settings">Settings</string>
+    <string name="add">Add ToDo Item</string>
+    <string name="task">Enter ToDo Item</string>
+    <string name="delete">Clear All ToDo Items</string>
+    <string name="desc">Description</string>
+</resources>
