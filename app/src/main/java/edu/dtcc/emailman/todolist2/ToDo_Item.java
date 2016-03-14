@@ -17,8 +17,7 @@ class ToDo_Item {
         this._id = _id;
     }
 
-    public ToDo_Item(int id, String desc, int done) {
-        _id = id;
+    public ToDo_Item(String desc, int done) {
         description = desc;
         is_done = done;
     }

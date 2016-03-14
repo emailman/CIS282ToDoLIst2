@@ -29,13 +29,13 @@ public class DBHelper extends SQLiteOpenHelper{
 
     // Constructor
     public DBHelper (Context context) {
-        super (context, DATABASE_NAME, null, DATABASE_VERSION);
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String table = "CREATE TABLE" + DATABASE_TABLE + "(" +
-                TASK_ID + " INTEGER KEY AUTOINCREMENT, " +
+        String table = "CREATE TABLE " + DATABASE_TABLE + "(" +
+                TASK_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 DESCRIPTION + " TEXT, " +
                 IS_DONE + " INTEGER" +")";
         sqLiteDatabase.execSQL(table);
@@ -69,12 +69,22 @@ public class DBHelper extends SQLiteOpenHelper{
     }
 
     public List<ToDo_Item> getAllTasks() {
-        List<ToDo_Item> todoList = new ArrayList<ToDo_Item>();
+        List<ToDo_Item> todoList = new ArrayList<>();
 
         String selectQuery = "SELECT * FROM " + DATABASE_TABLE;
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                ToDo_Item task = new ToDo_Item();
+                task.set_id(cursor.getInt(0));
+                task.setDescription(cursor.getString(1));
+                task.setIs_done(cursor.getInt(2));
+                todoList.add(task);
+            } while (cursor.moveToNext());
+        }
 
     return todoList;
     }
@@ -88,7 +98,7 @@ public class DBHelper extends SQLiteOpenHelper{
         db.close();
     }
 
-    // On click hadler to update
+    // On click handler to update
     public void update_Task(ToDo_Item task) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
