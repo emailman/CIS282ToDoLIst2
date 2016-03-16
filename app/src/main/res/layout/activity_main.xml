@@ -24,6 +24,7 @@
             android:layout_height="70dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
+            android:inputType="textNoSuggestions"
             android:ems="10"
             android:gravity="center_horizontal|center_vertical"
             android:hint="@string/task">

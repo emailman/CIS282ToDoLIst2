@@ -22,8 +22,8 @@ class ToDo_Item {
         return _id;
     }
 
-    public void set_id(int _id) {
-        this._id = _id;
+    public void set_id(int id) {
+        _id = id;
     }
 
     public String getDescription() {

@@ -33,22 +33,22 @@ public class DBHelper extends SQLiteOpenHelper{
     }
 
     @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase) {
+    public void onCreate(SQLiteDatabase db) {
         String table = "CREATE TABLE " + DATABASE_TABLE + "(" +
                 TASK_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 DESCRIPTION + " TEXT, " +
                 IS_DONE + " INTEGER" +")";
-        sqLiteDatabase.execSQL(table);
+        db.execSQL(table);
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
         // Drop old table, if it exists
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS" + DATABASE_TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE);
 
         // Create table again
-        onCreate(sqLiteDatabase);
+        onCreate(db);
     }
 
     // Add a new task
