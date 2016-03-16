@@ -40,7 +40,9 @@ public class MainActivity extends AppCompatActivity {
         list = mDBHelper.getAllTasks();
         adapt = new MyAdapter(this, R.layout.todo_item, list);
         ListView listTask = (ListView) findViewById(R.id.listView1);
-        listTask.setAdapter(adapt);
+        if (listTask != null) {
+            listTask.setAdapter(adapt);
+        }
     }
 
     // Handle an event from button to add a new task
@@ -82,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         public View getView(int position, View convertView, ViewGroup parent) {
-            CheckBox isDoneChBx = null;
+            CheckBox isDoneChBx;
             if (convertView == null) {
                 LayoutInflater inflater = (LayoutInflater)
                         context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -108,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
             ToDo_Item current = taskList.get(position);
             isDoneChBx.setText(current.getDescription());
-            isDoneChBx.setChecked(current.getIs_done() == 1 ? true : false);
+            isDoneChBx.setChecked(current.getIs_done() == 1);
             isDoneChBx.setTag(current);
             return convertView;
         }

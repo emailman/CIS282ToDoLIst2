@@ -25,7 +25,7 @@ public class DBHelper extends SQLiteOpenHelper{
     private static final String DESCRIPTION = "description";
     private static final String IS_DONE = "is_done";
 
-    private int taskCount;
+    // private int taskCount;
 
     // Constructor
     public DBHelper (Context context) {
@@ -62,7 +62,7 @@ public class DBHelper extends SQLiteOpenHelper{
 
         // Insert the row in the table
         db.insert(DATABASE_TABLE, null, values);
-        taskCount++;
+        // taskCount++;
 
         // Close the connection
         db.close();
@@ -79,12 +79,14 @@ public class DBHelper extends SQLiteOpenHelper{
         if (cursor.moveToFirst()) {
             do {
                 ToDo_Item task = new ToDo_Item();
-                task.set_id(cursor.getInt(0));
+                // task.set_id(cursor.getInt(0));
                 task.setDescription(cursor.getString(1));
                 task.setIs_done(cursor.getInt(2));
                 todoList.add(task);
             } while (cursor.moveToNext());
         }
+
+        cursor.close();
 
     return todoList;
     }
