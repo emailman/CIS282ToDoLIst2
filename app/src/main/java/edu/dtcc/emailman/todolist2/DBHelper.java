@@ -79,7 +79,6 @@ public class DBHelper extends SQLiteOpenHelper{
         if (cursor.moveToFirst()) {
             do {
                 ToDo_Item task = new ToDo_Item();
-                // task.set_id(cursor.getInt(0));
                 task.setDescription(cursor.getString(1));
                 task.setIs_done(cursor.getInt(2));
                 todoList.add(task);
